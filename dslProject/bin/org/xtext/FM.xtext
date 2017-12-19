@@ -1,0 +1,62 @@
+grammar org.xtext.FM with org.eclipse.xtext.common.Terminals 
+
+generate fM "http://www.xtext.org/FM"
+
+FeatureModel:
+	'<featureModel>' diagram=FeatureDiagram constraints=Constraints '</featureModel>'
+;
+	
+FeatureDiagram:
+	'<featureDiagram>' root=Child '</featureDiagram>'
+;
+
+Child:
+	Node | Leaf
+;
+
+Leaf:
+	'<feature' (mandatory?='mandatory')? 'name=' '"' name=ID '"' '/>'
+;
+
+Node:
+	'<'open_relation=RELATION (mandatory?='mandatory')? 'name=' '"' name=ID '"' '>' 
+		children+=Child+
+	'</'close_relation=RELATION'>'
+;
+
+Constraints:
+	'<constraints>'
+		rules+=Rule+
+	'</constraints>'
+;
+
+Rule:
+	'<rule>'
+		elements+=Formula+
+	'</rule>'
+;
+RuleElement:
+	'<'open_operator=OPERATOR'>'
+		left_side=Var right_side=Var
+	'</'close_operator=OPERATOR'>'
+;
+
+Formula:
+	Var | RuleElement
+;
+Var:
+	'<var'(not?='not')? 'name=' '"' name=ID '"' '/>'
+;
+terminal RELATION:
+	'and' | 'or' | 'alt'
+;
+
+terminal OPERATOR:
+	'imp'
+;
+
+// Quotes problem is about the inheritance of terminals grammar which already contains a string rule
+@Override 
+terminal STRING: 
+	'@@@@@@willnenverbecalled@@@@@'
+;

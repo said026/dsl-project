@@ -1,0 +1,4 @@
+include 'dslProject'
+include 'dslProject.ide'
+include 'dslProject.web'
+include 'dslProject.tests'
