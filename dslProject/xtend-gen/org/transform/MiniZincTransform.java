@@ -183,14 +183,14 @@ public class MiniZincTransform {
     return _xifexpression;
   }
   
-  public static void main(final String[] args) {
+  public static void doTransform(final String input, final String output) {
     try {
-      final FeatureModel fm = MiniZincTransform.loadFeatureModel(URI.createURI("/home/said026/example.fm"));
+      final FeatureModel fm = MiniZincTransform.loadFeatureModel(URI.createURI(input));
       final Child root = fm.getDiagram().getRoot();
       if ((root == null)) {
         throw new IllegalArgumentException("The feature model must not be empty");
       }
-      final PrintWriter pw = new PrintWriter("/home/said026/example.mzn", "UTF-8");
+      final PrintWriter pw = new PrintWriter(output, "UTF-8");
       pw.println("% Output file");
       if ((root instanceof Node)) {
         final String name = ((Node)root).getName();
@@ -228,5 +228,9 @@ public class MiniZincTransform {
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }
+  }
+  
+  public static void main(final String[] args) {
+    MiniZincTransform.doTransform("/home/said026/example.fm", "/home/said026/example.mzn");
   }
 }

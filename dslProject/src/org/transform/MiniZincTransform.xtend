@@ -131,16 +131,16 @@ class MiniZincTransform {
 		}
 	}
 	
-	def static void main(String[] args) {
+	def public static void doTransform(String input, String output) {
 		// Load the Feature Model
-		val fm = loadFeatureModel(URI.createURI("/home/said026/example.fm"))
+		val fm = loadFeatureModel(URI.createURI(input))
 		val root = fm.diagram.root
 		
 		if (root === null)
   			throw new IllegalArgumentException("The feature model must not be empty")
   		
   		// Create a DIMACS output file 
-  		val pw = new PrintWriter("/home/said026/example.mzn", "UTF-8");
+  		val pw = new PrintWriter(output, "UTF-8");
 		pw.println("% Output file")
 				
 		if (root instanceof Node) {				
@@ -179,5 +179,9 @@ class MiniZincTransform {
 		pw.println("solve satisfy;")
 		// flush the writer
         pw.flush()
-	}	
+	}
+	
+	def static void main(String[] args) {
+		doTransform("/home/said026/example.fm", "/home/said026/example.mzn")
+	}
 }

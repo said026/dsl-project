@@ -6,6 +6,13 @@ import org.xtext.fM.Node
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl
 import org.xtext.fM.Leaf
 import java.util.Scanner
+import org.transform.MiniZincTransform
+import java.io.PrintWriter
+import java.io.BufferedWriter
+import java.io.FileWriter
+import java.io.IOException
+import java.io.BufferedReader
+import java.io.InputStreamReader
 
 class CommandLine {
 	
@@ -50,5 +57,35 @@ class CommandLine {
 		val params = scanner.nextLine()
 		
 		val params_list = params.split(",")
+		
+		// We perform a model transformation to Minizinc
+		MiniZincTransform.doTransform("/home/said026/example.fm", "/home/said026/example.mzn")
+		
+		// We add the selected features as constraints
+		try {
+    		val out = new PrintWriter(new BufferedWriter(new FileWriter("/home/said026/example.mzn", true)))
+    		params_list.forEach[p|
+    			out.println("constraint " + p + ";")
+    		]
+    		out.close()
+		} catch (IOException e) {
+    		println("File I/O error occurred")
+		}
+		
+		// Check the satisfiability of the configuration
+		val output = new StringBuffer()
+		val command = #{"/bin/bash", "-c", "minizinc", "/home/said026/example.mzn"}
+		
+		val p = Runtime.getRuntime().exec(command)
+	    p.waitFor()
+	
+	    val reader = new BufferedReader(new InputStreamReader(p.getInputStream()))
+	
+	    var line = ""
+	    while ((line = reader.readLine())!== null) {
+			output.append(line + "\n")
+	    }
+	    println(output)
+	    
 	}
 }
