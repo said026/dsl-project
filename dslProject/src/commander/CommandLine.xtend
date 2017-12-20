@@ -85,7 +85,10 @@ class CommandLine {
 	    while ((line = reader.readLine())!== null) {
 			output.append(line + "\n")
 	    }
-	    println(output)
-	    
+	    if (output.indexOf("UNSATISFIABLE") !== -1) {
+	    	println("The selected configuration is not valid !")
+	    } else {
+	    	println("The selected configuration is valid !")
+	    }
 	}
 }

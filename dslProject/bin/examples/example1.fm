@@ -1,0 +1,25 @@
+<featureModel> 
+	<featureDiagram>
+		<and name="CarEquipment">
+			<alt mandatory name="Healthning">
+				<feature name="AitConditioningFrontAndRear"/>
+				<feature name="AirConditioning"/>
+			</alt>
+			<and mandatory name="Comfort">
+				<feature name="AutomaticHeadLights"/>
+			</and> 
+			<and mandatory name="DrivingAndSafety">
+				<feature name="FrontFogLights"/>
+			</and> 
+		</and> 
+	</featureDiagram> 
+	<constraints> 
+		<rule> 
+			<imp> 
+				<var name="AutomaticHeadLights"/> 
+				<var name="FrontFogLights"/> 
+			</imp> 
+		</rule> 
+	</constraints> 
+</featureModel>
+

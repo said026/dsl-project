@@ -1,0 +1,26 @@
+c Output file
+c CarEquipment 1
+c Healthning 2
+c Comfort 3
+c DrivingAndSafety 4
+c AitConditioningFrontAndRear 5
+c AirConditioning 6
+c AutomaticHeadLights 7
+c FrontFogLights 8
+
+p cnf 8 14
+
+1 0
+2 -5 0
+2 -6 0
+5 6 -2 0
+-5 -6 0
+1 -2 0
+2 -1 0
+3 -7 0
+1 -3 0
+3 -1 0
+4 -8 0
+1 -4 0
+4 -1 0
+-7 8 0

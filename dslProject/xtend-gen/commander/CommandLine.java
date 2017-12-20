@@ -97,7 +97,13 @@ public class CommandLine {
       while (((line = reader.readLine()) != null)) {
         output.append((line + "\n"));
       }
-      InputOutput.<StringBuffer>println(output);
+      int _indexOf = output.indexOf("UNSATISFIABLE");
+      boolean _tripleNotEquals = (_indexOf != (-1));
+      if (_tripleNotEquals) {
+        InputOutput.<String>println("The selected configuration is not valid !");
+      } else {
+        InputOutput.<String>println("The selected configuration is valid !");
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

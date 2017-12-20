@@ -1,0 +1,34 @@
+<featureModel> 
+	<featureDiagram>
+		<and name="MobilePhone">
+		       <feature mandatory name="Calls"/>
+		       <feature name="GPS"/>
+			<alt mandatory name="Screen">
+				<feature name="Basic"/>
+					<feature name="Color"/>
+					<feature name="HighResolution"/>
+			</alt> 
+			<or name="Media">
+				<feature name="Camera"/>
+                <feature name="MP3"/>
+			</alt> 
+		</and> 
+	</featureDiagram> 
+	<constraints> 
+		<rule> 
+			<imp> 
+				<var name="GPS"/> 
+				<var not name="HighResolution"/> 
+			</imp> 
+			<imp> 
+				<var name="HighResolution"/> 
+				<var not name="GPS"/> 
+			</imp> 
+			<imp> 
+				<var name="Camera"/> 
+				<var name="HighResolution"/> 
+			</imp> 
+		</rule> 
+	</constraints> 
+</featureModel>
+

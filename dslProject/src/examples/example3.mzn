@@ -1,0 +1,24 @@
+% Output file
+var bool: MobilePhone;
+var bool: Calls;
+var bool: GPS;
+var bool: Screen;
+var bool: Media;
+var bool: Basic;
+var bool: Color;
+var bool: HighResolution;
+var bool: Camera;
+var bool: MP3;
+constraint MobilePhone -> Calls;
+constraint Calls -> MobilePhone;
+constraint GPS -> MobilePhone;
+constraint Screen -> Basic xor Color xor HighResolution;
+constraint MobilePhone -> Screen;
+constraint Screen -> MobilePhone;
+constraint Media -> Camera \/ MP3;
+constraint Media -> MobilePhone;
+constraint GPS -> not HighResolution;
+constraint HighResolution -> not GPS;
+constraint Camera -> HighResolution;
+constraint MobilePhone;
+solve satisfy;

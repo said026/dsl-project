@@ -1,0 +1,24 @@
+<featureModel> 
+	<featureDiagram>
+		<and name="ECommerceWebsite">
+            <feature mandatory name="Catalogue"/>
+			<or mandatory name="Payment">
+				<feature name="BankTransfer"/>
+				<feature name="CreditCard"/>
+			</or>
+			<alt mandatory name="Security">
+				<feature name="High"/>
+                <feature name="Standard"/>
+			</alt> 
+            <feature name="Search"/>
+		</and> 
+	</featureDiagram> 
+	<constraints> 
+		<rule> 
+			<imp> 
+				<var name="CreditCard"/> 
+				<var name="High"/> 
+			</imp> 
+		</rule> 
+	</constraints> 
+</featureModel>

@@ -1,0 +1,22 @@
+% Output file
+var bool: ECommerceWebsite;
+var bool: Catalogue;
+var bool: Payment;
+var bool: Security;
+var bool: Search;
+var bool: BankTransfer;
+var bool: CreditCard;
+var bool: High;
+var bool: Standard;
+constraint ECommerceWebsite -> Catalogue;
+constraint Catalogue -> ECommerceWebsite;
+constraint Payment -> BankTransfer \/ CreditCard;
+constraint ECommerceWebsite -> Payment;
+constraint Payment -> ECommerceWebsite;
+constraint Security -> High xor Standard;
+constraint ECommerceWebsite -> Security;
+constraint Security -> ECommerceWebsite;
+constraint Search -> ECommerceWebsite;
+constraint CreditCard -> High;
+constraint ECommerceWebsite;
+solve satisfy;
