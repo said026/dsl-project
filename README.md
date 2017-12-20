@@ -1,7 +1,7 @@
 # Hack your Domain-Specific Language (DSL) - Project
 
-The goal of this project is to develop a domain-specific language (DSL) for modeling variability. By designing and building a DSL for elaborating two flavors of variability models (basic and attributed feature models) 
-the goal of the project is to be able to :
+The goal of this project is to develop a domain-specific language (DSL) for modeling variability. By designing and building a DSL for elaborating two flavors of variability models (basic and attributed feature models). 
+The goal of the project is to be able to :
 
 * Specify the abstract syntax of your DSL (with a metamodel)
 * Specify the concrete syntax of your DSL (with a grammar)
